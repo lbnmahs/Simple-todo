@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 const styles = {
-    bg: `max-w-lg bg-blue-300 rounded-xl shadow-md h-20 m-auto p-4`,
+    container: `w-full bg-red-400 m-auto rounded-md shadow-xl p-6 my-8`,
     date: `font-bold text-white text-2xl text-center`
 }
 
@@ -20,8 +20,8 @@ const Banner = () => {
     const day = date.getDate();
     const year = date.getFullYear();
   return (
-    <div className={styles.bg}>
-      <h1 className={styles.date}>{dayOfWeek}, {month}/{day}/{year}</h1>
+    <div className={styles.container}>
+      <h1 className={styles.date}>{dayOfWeek}, {day}/{month}/{year}</h1>
     </div>
   )
 }
