@@ -14,7 +14,7 @@ const styles = {
 
 
 function App() {
-  const [todos, setTodos] = useState(['Todo 1', 'Todo 2', 'Todo 3'])
+  const [todos, setTodos] = useState([])
   return (
     <div className={styles.bg}>
       <Banner />
