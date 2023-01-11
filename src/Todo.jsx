@@ -9,14 +9,14 @@ const styles = {
     textCompleted: `cursor-poniter line-through ml-2`,
     button: `cursor-pointer flex items-center`
 }
-const Todo = ({ todo }) => {
+const Todo = ({ todo, toggleComplete, deleteTodo }) => {
   return (
-    <li className={styles.li}>
+    <li className={todo.completed ? styles.liCompleted :styles.li}>
         <div className={styles.row}>
-            <input type="checkbox" />
-            <span className={styles.text}>{todo}</span>
+            <input onChange={() => toggleComplete(todo)} type="checkbox" checked={todo.completed ? 'checked' : ''} />
+            <p onClick={() => toggleComplete(todo)} className={todo.completed ? styles.textCompleted :styles.text}>{todo.text}</p>
         </div>
-        <button className={styles.button}><FaRegTrashAlt size={20}/></button>
+        <button onClick={() => deleteTodo(todo.id)} className={styles.button}><FaRegTrashAlt size={20}/></button>
     </li>
   )
 }

@@ -37,7 +37,8 @@ const Banner = () => {
     useEffect(() => {
         const apiKey = import.meta.env.VITE_QUOTE_API_KEY
         const getQuote = async() => {
-            const response = await fetch('https://quotes15.p.rapidapi.com/quotes/random/', {
+            const url = 'https://quotes15.p.rapidapi.com/quotes/random/'
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'X-RapidAPI-Key': `${apiKey}`,
@@ -48,7 +49,7 @@ const Banner = () => {
             const data = await response.json()
             if(data?.originator?.name){
                 setQuote(data)
-                setTimeout(getQuote, 1000 * 60 * 60 * 24)
+                // setTimeout(getQuote, 1000 * 60 * 60 * 24)
             }else{
                 getQuote()
             }
