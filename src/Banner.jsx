@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import afternoon from './assets/afternoon.jpg'
 import morning from './assets/morning.jpg'
 import night from './assets/night.jpg'
@@ -37,27 +38,17 @@ const Banner = () => {
     useEffect(() => {
         const apiKey = import.meta.env.VITE_QUOTE_API_KEY
         const getQuote = async() => {
-            const url = 'https://quotes15.p.rapidapi.com/quotes/random/'
-            const response = await fetch(url, {
-                method: 'GET',
+            const result = await axios.get('https://quotes15.p.rapidapi.com/quotes/random/', {
                 headers: {
                     'X-RapidAPI-Key': `${apiKey}`,
                     'X-RapidAPI-Host': 'quotes15.p.rapidapi.com'
                 }
-
             })
-            const data = await response.json()
-            if(data?.originator?.name){
-                setQuote(data)
-                // setTimeout(getQuote, 1000 * 60 * 60 * 24)
-            }else{
-                getQuote()
-            }
+            setQuote(result.data)
         }
         getQuote()
-        // const interval = setInterval(getQuote, 1000 * 60 * 60 * 24)
-        // getQuote()
-        // return () => clearInterval(interval)
+        const interval = setInterval(getQuote, 86400)
+        return () => clearInterval(interval)
     }, [])
 
     // Change bg image according to time of day

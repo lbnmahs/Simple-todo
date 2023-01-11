@@ -11,6 +11,7 @@ const styles = {
   form: `flex justify-between mb-8`,
   input: `border p-2 w-full rounded-md text-xl outline-none`,
   button: `p-4 ml-2 bg-purple-500 rounded-md text-slate-100`,
+  count: `bg-slate-200 text-center p-4 rounded-md my-6`
 }
 
 
@@ -58,7 +59,7 @@ function App() {
   }
   return (
     <div className={styles.bg}>
-      {/* <Banner /> */}
+      <Banner />
       <div className={styles.container}>
         
         <form onSubmit={createTodo} className={styles.form}>
@@ -83,6 +84,9 @@ function App() {
           }
           
         </ul>
+        {
+          todos.length > 0 && <p className={styles.count}>You have {todos.length} {todos.length > 1 ? 'items' : 'item'} left</p>
+        }
       </div>
     </div>
   )
